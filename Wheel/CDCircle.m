@@ -22,7 +22,7 @@
 
 //Circle radius is equal to rect / 2 , path radius is equal to rect1/2.
 
--(id) initWithFrame:(CGRect)frame numberOfSegments: (NSInteger) nSegments ringWidth:(CGFloat)width {
+-(id) initWithFrame:(CGRect)frame numberOfSegments: (int) nSegments ringWidth:(CGFloat)width {
     self = [super initWithFrame:frame];
     
     if (self) {

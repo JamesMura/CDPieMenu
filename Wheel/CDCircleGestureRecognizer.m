@@ -15,7 +15,6 @@
 #import <UIKit/UIGestureRecognizerSubclass.h>
 #import "CDCircle.h"
 #import "CDCircleThumb.h"
-#import <AudioToolbox/AudioServices.h>
 #import "CDCircleOverlayView.h"
 #import "Common.h"
 
@@ -128,13 +127,6 @@
                        [view setTransform:CGAffineTransformRotate(current, deltaAngle)];
                         }];
 
-                       SystemSoundID soundID;
-                       NSString *filePath = [[NSBundle mainBundle] pathForResource:@"iPod Click" ofType:@"aiff"];
-                       
-                       NSURL *fileUrl = [NSURL fileURLWithPath:filePath];
-                       AudioServicesCreateSystemSoundID((__bridge CFURLRef)fileUrl, &soundID);
-                       AudioServicesPlaySystemSound(soundID);
-                       
                        [currentThumb.iconView setIsSelected:NO];
                        [thumb.iconView setIsSelected:YES];
                        self.currentThumb = thumb;
@@ -167,13 +159,6 @@
                [UIView animateWithDuration:0.3f animations:^{
                    [view setTransform:CGAffineTransformRotate(current, deltaAngle)];
                } completion:^(BOOL finished) {
-                   
-                   SystemSoundID soundID;
-                   NSString *filePath = [[NSBundle mainBundle] pathForResource:@"iPod Click" ofType:@"aiff"];
-                   
-                   NSURL *fileUrl = [NSURL fileURLWithPath:filePath];
-                   AudioServicesCreateSystemSoundID((__bridge CFURLRef)fileUrl, &soundID);
-                   AudioServicesPlaySystemSound(soundID);
                    
                    [currentThumb.iconView setIsSelected:NO];
                    [thumb.iconView setIsSelected:YES];

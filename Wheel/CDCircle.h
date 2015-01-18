@@ -44,6 +44,6 @@ typedef enum {
 
 @property (nonatomic, strong) UIColor *circleColor;
 
--(id) initWithFrame:(CGRect)frame numberOfSegments: (NSInteger) nSegments ringWidth: (CGFloat) width;
+-(id) initWithFrame:(CGRect)frame numberOfSegments: (int) nSegments ringWidth: (CGFloat) width;
 
 @end
