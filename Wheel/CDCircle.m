@@ -8,7 +8,7 @@
  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 #define degreesToRadians(x) (M_PI * (x) / 180.0)
-#define kRotationDegrees 90
+#define kRotationDegrees 270
 #import "CDCircle.h"
 #import <QuartzCore/QuartzCore.h>
 #import "CDCircleGestureRecognizer.h"
@@ -94,10 +94,11 @@
         thumb.iconView.image = [self.dataSource circle:self iconForThumbAtRow:thumb.tag];
 
         CGFloat radius = rect1.size.height/2 + ((rect.size.height/2 - rect1.size.height/2)/2) - thumb.yydifference;
-        CGFloat x = centerPoint.x + (radius * cos(degreesToRadians(perSectionDegrees)));
-        CGFloat yi = centerPoint.y + (radius * sin(degreesToRadians(perSectionDegrees)));
+        CGFloat x = centerPoint.x - (radius * cos(degreesToRadians(perSectionDegrees)));
+        CGFloat yi = centerPoint.y - (radius * sin(degreesToRadians(perSectionDegrees)));
         
-
+        
+        NSLog(@"position sum: %f  perSectionDegrees: %f kRotationDegrees: %d %d", (perSectionDegrees + kRotationDegrees),perSectionDegrees,kRotationDegrees, i);
         
         [thumb setTransform:CGAffineTransformMakeRotation(degreesToRadians((perSectionDegrees + kRotationDegrees)))];
         if (i==0) {

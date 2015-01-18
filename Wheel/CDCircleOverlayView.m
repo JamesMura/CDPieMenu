@@ -39,7 +39,8 @@
         [self addSubview:overlayThumb];
         overlayThumb.arcColor = [UIColor colorWithRed:0.7 green:0.7 blue:0.7 alpha:0.3f];
         self.buttonCenter = CGPointMake(CGRectGetMidX(frame), CGRectGetMidY(self.circle.frame));
-
+        CGAffineTransform rotation = CGAffineTransformMakeRotation( degreesToRadians(180) );
+        [self setTransform:rotation];
               }
 
     return self;

@@ -67,6 +67,11 @@
     
 }
 
+- (CGFloat) calculateDeltaAnglefromCircle:(CDCircle *)view andThumb:(CDCircleThumb *)thumb {
+    CGFloat delta =  - degreesToRadians(360) + atan2(view.transform.a, view.transform.b) + atan2(thumb.transform.a, thumb.transform.b);
+    return delta;
+}
+
 - (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event
 {
    // Perform final check to make sure a tap was not misinterpreted.
@@ -117,18 +122,11 @@
                    if (CGPathContainsPoint(shadow.arc.CGPath, NULL, pointInShadowRect, NULL)) {
                        CGAffineTransform current = view.transform;
                    
-                       
-                    CGFloat deltaAngle= - degreesToRadians(180) + atan2(view.transform.a, view.transform.b) + atan2(thumb.transform.a, thumb.transform.b);
+                       CGFloat deltaAngle = [self calculateDeltaAnglefromCircle:view andThumb:thumb];
 
-                       
                         [UIView animateWithDuration:0.2f animations:^{
                        [view setTransform:CGAffineTransformRotate(current, deltaAngle)];
                         }];
-                       
-                       
-                       
-                       
-                       
 
                        SystemSoundID soundID;
                        NSString *filePath = [[NSBundle mainBundle] pathForResource:@"iPod Click" ofType:@"aiff"];
@@ -150,12 +148,8 @@
            }
 ;
        }];
-
-
        currentTransformAngle = 0;
        
-       
-              
      [self setState:UIGestureRecognizerStateEnded];  
        
    } else {
@@ -168,7 +162,7 @@
            CGPoint touchPoint = [touch locationInView:thumb];
            if (CGPathContainsPoint(thumb.arc.CGPath, NULL, touchPoint, NULL)) {
                
-               CGFloat deltaAngle= - degreesToRadians(180) + atan2(view.transform.a, view.transform.b) + atan2(thumb.transform.a, thumb.transform.b);
+               CGFloat deltaAngle =  [self calculateDeltaAnglefromCircle:view andThumb:thumb];
                CGAffineTransform current = view.transform;
                [UIView animateWithDuration:0.3f animations:^{
                    [view setTransform:CGAffineTransformRotate(current, deltaAngle)];
